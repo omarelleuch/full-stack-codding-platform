@@ -1,0 +1,36 @@
+<div class="editor-container">
+  <!-- Code Editor -->
+  <div class="editor-wrapper">
+    <textarea [(ngModel)]="codeInput" rows="12" class="form-control editor" placeholder="Write your code here..."></textarea>
+    <button class="btn btn-success mt-2" style="background-color: #1abc9c;" (click)="runCode()">Run Code</button>
+  </div>
+
+  <!-- Output -->
+  <div class="output-wrapper mt-3">
+    <h4>Execution Output</h4>
+    <pre class="output">{{ codeOutput }}</pre>
+  </div>
+
+  <!-- Test Cases -->
+  <div class="test-cases mt-4">
+    <h4>Test Cases</h4>
+    <div *ngIf="isLoading" class="loading-spinner">Loading test cases...</div>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+    <ul class="nav nav-tabs">
+      <li *ngFor="let testCase of testCases; let i = index" class="nav-item">
+        <button 
+          class="nav-link"
+          [class.active]="activeTab === 'test-case-' + i"
+          (click)="switchTab('test-case-' + i)">
+          Test Case {{ i + 1 }}
+        </button>
+      </li>
+    </ul>
+    <div *ngFor="let testCase of testCases; let i = index" [hidden]="activeTab !== 'test-case-' + i">
+      <div class="test-case-details">
+        <strong>Input:</strong> {{ testCase.input }}<br />
+        <strong>Expected Output:</strong> {{ testCase.output }}
+      </div>
+    </div>
+  </div>
+</div>

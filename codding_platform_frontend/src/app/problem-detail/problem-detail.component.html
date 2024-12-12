@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-6">
+    <div class="container mt-5">
+      <div class="problem-container">
+    
+        <div *ngIf="problem?.title; else noProblem" class="problem-detail">
+          <!-- Problem details card -->
+          <div class="card shadow-sm w-100">
+            <div class="card-body">
+              <h5 class="card-title text-dark">{{ problem.title }}</h5>
+              <p class="card-text text-muted">{{ problem.text }}</p>
+    
+              <p>
+                <strong>Difficulty:</strong>
+                <span
+                  [ngClass]="{
+                    'bg-success': problem.difficulty === 'Easy',
+                    'bg-warning text-dark': problem.difficulty === 'Medium',
+                    'bg-danger': problem.difficulty === 'Hard'
+                  }"
+                  class="badge text-light px-3 py-2"
+                >
+                  {{ problem.difficulty }}
+                </span>
+              </p>
+    
+              <p>
+                <strong>Topic Tags:</strong>
+                {{ problem.topic_tags?.length ? problem.topic_tags.join(', ') : 'No topic tags available' }}
+              </p>
+              <p><strong>Success Rate:</strong> {{ problem.success_rate }}%</p>
+              <p><strong>Question ID:</strong> {{ problem.question_id }}</p>
+              <p><strong>Slug:</strong> {{ problem.slug }}</p>
+              <p><strong>Total Submissions:</strong> {{ problem.total_submission }}</p>
+              <p><strong>Total Accepted:</strong> {{ problem.total_accepted }}</p>
+              <p><strong>Likes:</strong> {{ problem.likes }}</p>
+              <p><strong>Dislikes:</strong> {{ problem.dislikes }}</p>
+    
+              <!-- Hints Section -->
+              <p><strong>Hint:</strong></p>
+              <p>{{ problem.hints || 'No hints available.' }}</p>
+    
+              <!-- Similar Questions Section -->
+              <p><strong>Similar Questions:</strong></p>
+              <ul *ngIf="problem.similar_questions_text?.length; else noSimilarQuestions">
+                <li *ngFor="let text of problem.similar_questions_text; let i = index">
+                  <strong></strong> {{ text || 'No similar questions available' }} <br />
+                  
+                </li>
+              </ul>
+              <ng-template #noSimilarQuestions>
+                <p>No similar questions available.</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+    
+        <ng-template #noProblem>
+          <div class="text-center mt-4">
+            <p class="text-muted fs-5">Problem details not available.</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    
+  </div>
+  <div class="col-6 mt-5">
+    <!-- Code Editor Container -->
+    <app-code-editor></app-code-editor>
+  </div>
+  
+</div>
