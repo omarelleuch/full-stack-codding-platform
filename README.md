@@ -26,3 +26,32 @@ Welcome to the Full Stack Coding Platform repository! This project aims to provi
    ```bash
    git clone https://github.com/omarelleuch/full-stack-codding-platform.git
    cd full-stack-codding-platform
+
+2. Install the required packages:
+   ```bash
+   pip install -r requirements.txt
+
+3.Navigate to the frontend directory and install Angular dependencies:
+    ```bash
+   cd frontend
+   npm install
+
+## Configure your PostgreSQL database in settings.py:
+
+- **Database name**: ``  
+- **Database user**: ``  
+- **Database password**: ``  
+- **Database host**: ``  
+- **Database port**: ``  
+
+## Apply migrations:
+
+   ```bash
+   python manage.py migrate
+
+## Start the Django development server:
+
+```bash
+python manage.py runserver
+
+
