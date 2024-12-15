@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from problems.views import RunCodeAPIView 
 from problems import views
 from problems.views import ProblemList
 
@@ -23,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/problems/', ProblemList.as_view(), name='problem-list'),
     path('api/problems/<int:id>/', views.ProblemDetail.as_view(), name='get_problem'),
+    path('api/run-code/', RunCodeAPIView.as_view(), name='run_code'),
 
 ]

@@ -1,8 +1,31 @@
 <div class="editor-container">
+  <!-- Language Selector -->
+  <div class="language-selector">
+    <label for="language">Choose Language:</label>
+    <select id="language" [(ngModel)]="selectedLanguage" class="form-control">
+      <option *ngFor="let lang of supportedLanguages" [value]="lang">
+        {{ lang }}
+      </option>
+    </select>
+  </div>
+
   <!-- Code Editor -->
   <div class="editor-wrapper">
-    <textarea [(ngModel)]="codeInput" rows="12" class="form-control editor" placeholder="Write your code here..."></textarea>
-    <button class="btn btn-success mt-2" style="background-color: #1abc9c;" (click)="runCode()">Run Code</button>
+    <textarea 
+      [(ngModel)]="codeInput" 
+      rows="12" 
+      class="form-control editor" 
+      placeholder="Write your code here..."></textarea>
+    <button 
+      class="btn btn-success mt-2 run-code-button" 
+      (click)="runCode()">
+      Run Code
+    </button>
+    <button 
+      class="btn btn-secondary mt-2 save-code-button" 
+      (click)="saveCode()">
+      Save Code
+    </button>
   </div>
 
   <!-- Output -->
@@ -19,8 +42,9 @@
     <ul class="nav nav-tabs">
       <li *ngFor="let testCase of testCases; let i = index" class="nav-item">
         <button 
-          class="nav-link"
+          class="nav-link" 
           [class.active]="activeTab === 'test-case-' + i"
+          [ngClass]="{'passed': testCase.status === 'passed', 'failed': testCase.status === 'failed'}"
           (click)="switchTab('test-case-' + i)">
           Test Case {{ i + 1 }}
         </button>
@@ -29,7 +53,8 @@
     <div *ngFor="let testCase of testCases; let i = index" [hidden]="activeTab !== 'test-case-' + i">
       <div class="test-case-details">
         <strong>Input:</strong> {{ testCase.input }}<br />
-        <strong>Expected Output:</strong> {{ testCase.output }}
+        <strong>Expected Output:</strong> {{ testCase.output }}<br />
+        <strong>Status:</strong> <span [class.passed]="testCase.status === 'passed'" [class.failed]="testCase.status === 'failed'">{{ testCase.status || 'Not Tested' }}</span>
       </div>
     </div>
   </div>

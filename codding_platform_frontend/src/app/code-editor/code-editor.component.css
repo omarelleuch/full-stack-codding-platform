@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+.language-selector {
+  margin-bottom: 15px;
+}
+
 .editor-wrapper {
   margin-bottom: 20px;
 }
@@ -11,6 +15,27 @@ textarea.editor {
   width: 100%;
   font-family: monospace;
   font-size: 14px;
+  resize: vertical;
+  min-height: 150px;
+  max-height: 400px;
+}
+
+.run-code-button {
+  background-color: #1abc9c;
+  border: none;
+}
+
+.run-code-button:hover {
+  background-color: #17a089;
+}
+
+.save-code-button {
+  background-color: #95a5a6;
+  border: none;
+}
+
+.save-code-button:hover {
+  background-color: #7f8c8d;
 }
 
 .output-wrapper pre.output {
@@ -20,10 +45,14 @@ textarea.editor {
   font-family: monospace;
 }
 
-.nav-tabs .nav-link.active {
+.nav-tabs .nav-link.passed {
   background-color: #1abc9c;
   color: white;
-  border: 1px solid #1abc9c;
+}
+
+.nav-tabs .nav-link.failed {
+  background-color: #e74c3c;
+  color: white;
 }
 
 .test-case-details {
@@ -42,13 +71,4 @@ textarea.editor {
   color: red;
   text-align: center;
   font-size: 16px;
-}
-button {
-  color: black !important;
-  border: none !important;
-}
-
-button:hover {
-  background-color: #17a089 !important;
-  color: white !important;
 }
